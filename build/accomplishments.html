@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accomplishments & Achievements</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-layout">
+        <div class="container" style="max-width:600px;">
+            <a href="index.html" class="back-link small-btn">← Back</a>
+            <h1>My Accomplishments & Achievements</h1>
+            <form id="acc-form">
+                <input type="text" id="acc-input" placeholder="Add an accomplishment..." autocomplete="off" required>
+                <button type="submit" id="acc-add-btn">Add</button>
+            </form>
+            <ul id="acc-list"></ul>
+        </div>
+    </div>
+    <script>
+        // Checklist logic with localStorage
+        const accForm = document.getElementById('acc-form');
+        const accInput = document.getElementById('acc-input');
+        const accList = document.getElementById('acc-list');
+
+        // Load from localStorage
+        let accItems = JSON.parse(localStorage.getItem('accomplishments-list') || '[]');
+        accItems.forEach(addAccItem);
+
+        accForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = accInput.value.trim();
+            if (text) {
+                addAccItem({ text, completed: false });
+                accItems.push({ text, completed: false });
+                localStorage.setItem('accomplishments-list', JSON.stringify(accItems));
+                accInput.value = '';
+            }
+        });
+
+        function addAccItem(item) {
+            const li = document.createElement('li');
+            li.className = item.completed ? 'completed' : '';
+            // Check button
+            const checkBtn = document.createElement('button');
+            checkBtn.innerHTML = '✔';
+            checkBtn.className = 'check-btn';
+            checkBtn.addEventListener('click', () => {
+                li.classList.toggle('completed');
+                item.completed = !item.completed;
+                localStorage.setItem('accomplishments-list', JSON.stringify(accItems));
+            });
+            // Text
+            const span = document.createElement('span');
+            span.textContent = item.text;
+            // Delete button
+            const delBtn = document.createElement('button');
+            delBtn.textContent = '✖';
+            delBtn.className = 'delete-btn';
+            delBtn.addEventListener('click', () => {
+                accList.removeChild(li);
+                accItems = accItems.filter(i => i !== item);
+                localStorage.setItem('accomplishments-list', JSON.stringify(accItems));
+            });
+            li.appendChild(checkBtn);
+            li.appendChild(span);
+            li.appendChild(delBtn);
+            accList.appendChild(li);
+        }
+    </script>
+</body>
+</html>
