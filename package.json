@@ -7,7 +7,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "todo",
@@ -28,5 +30,5 @@
     "gh-pages": "^6.3.0",
     "react-scripts": "4.0.3"
   },
-  "homepage": "https://yourusername.github.io/todo-list-website"
+  "homepage": "https://Shiroe28.github.io/personaltodolist"
 }
