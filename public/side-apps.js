@@ -28,3 +28,13 @@ if (notepad) {
         localStorage.setItem('notepad', notepad.value);
     });
 }
+
+// React scripts
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
