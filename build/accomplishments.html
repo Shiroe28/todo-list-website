@@ -9,22 +9,26 @@
 <body>
     <div class="main-layout">
         <div class="container" style="max-width:600px;">
-            <a href="index.html" class="back-link small-btn">← Back</a>
-            <h1>My Accomplishments & Achievements</h1>
+            <a href="index.html" class="back-link small-btn">← Back to Todo List</a>
+            <h1>🏆 My Accomplishments & Achievements</h1>
             <form id="acc-form">
                 <input type="text" id="acc-input" placeholder="Add an accomplishment..." autocomplete="off" required>
                 <button type="submit" id="acc-add-btn">Add</button>
             </form>
             <ul id="acc-list"></ul>
+            <div class="action-buttons">
+                <button id="clear-acc-completed" class="action-btn">Clear Completed</button>
+                <button id="clear-acc-all" class="action-btn danger-btn">Clear All</button>
+            </div>
         </div>
     </div>
     <script>
-        // Checklist logic with localStorage
+        
         const accForm = document.getElementById('acc-form');
         const accInput = document.getElementById('acc-input');
         const accList = document.getElementById('acc-list');
 
-        // Load from localStorage
+        
         let accItems = JSON.parse(localStorage.getItem('accomplishments-list') || '[]');
         accItems.forEach(addAccItem);
 
@@ -67,6 +71,29 @@
             li.appendChild(span);
             li.appendChild(delBtn);
             accList.appendChild(li);
+        }
+
+        // Clear completed accomplishments
+        const clearAccCompletedBtn = document.getElementById('clear-acc-completed');
+        if (clearAccCompletedBtn) {
+            clearAccCompletedBtn.addEventListener('click', () => {
+                const completedItems = accList.querySelectorAll('li.completed');
+                completedItems.forEach(item => item.remove());
+                accItems = accItems.filter(item => !item.completed);
+                localStorage.setItem('accomplishments-list', JSON.stringify(accItems));
+            });
+        }
+
+        // Clear all accomplishments
+        const clearAccAllBtn = document.getElementById('clear-acc-all');
+        if (clearAccAllBtn) {
+            clearAccAllBtn.addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear all accomplishments?')) {
+                    accList.innerHTML = '';
+                    accItems = [];
+                    localStorage.setItem('accomplishments-list', JSON.stringify(accItems));
+                }
+            });
         }
     </script>
 </body>

@@ -5,7 +5,9 @@
   "main": "src/index.tsx",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build:copy",
+    "build:react": "react-scripts build",
+    "build:copy": "xcopy /E /I /Y public build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
