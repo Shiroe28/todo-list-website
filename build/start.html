@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Todo List Locally</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #00bfff; }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #00bfff 60%, #0077b6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #00bfff;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Todo List Website - Local Viewer</h1>
+        
+        <div class="info">
+            <strong>Note:</strong> To view the website locally, click one of the buttons below:
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="index.html" class="button">📝 Open Todo List</a>
+            <a href="accomplishments.html" class="button">🏆 Open Accomplishments</a>
+        </div>
+
+        <h2>Features Available:</h2>
+        <ul>
+            <li>✅ Add and manage todo items</li>
+            <li>💾 LocalStorage persistence</li>
+            <li>🏆 Move tasks to accomplishments</li>
+            <li>🧮 Working calculator</li>
+            <li>📝 Auto-save notepad</li>
+            <li>⏰ Live date & time</li>
+        </ul>
+
+        <h2>To Deploy Online:</h2>
+        <ol>
+            <li>Open PowerShell in the project folder</li>
+            <li>Run: <code>npm run deploy</code></li>
+            <li>Visit: <code>https://Shiroe28.github.io/personaltodolist</code></li>
+        </ol>
+
+        <div class="info" style="margin-top: 30px;">
+            <strong>Alternative:</strong> Use VS Code Live Server extension or Python's HTTP server to view the site properly.
+        </div>
+    </div>
+</body>
+</html>
